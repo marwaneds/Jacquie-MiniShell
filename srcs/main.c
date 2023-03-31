@@ -12,4 +12,5 @@ int main(int ac, char **av)
 	i = -1;
 	while (++i < atoi(av[1]))
 		printf("¯\\_(ツ)_/¯\n");
+	return (0);
 }

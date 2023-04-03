@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:53:13 by cortiz            #+#    #+#             */
-/*   Updated: 2023/04/03 12:01:33 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/04/03 19:55:44 by carlosortiz      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,37 +31,63 @@ int	checkfermer(char *str)
 	int	i;
 	int	cbontkt;
 
-	i = 0;
+	i = -1;
 	cbontkt = 0;
-	while(str[i])
+	while (str[++i])
 	{
-		if (str[i] == '\"');
+		if (str[i] == '\"')
+		{
 			cbontkt++;
+			i++;
+			while (str[i] != '\"' && str[i])
+				i++;
+			if (str[i] == '\"')
+			{
+				cbontkt++;
+				i++;
+			}
+		}
+		if (str[i] == '\'')
+		{
+			cbontkt++;
+			i++;
+			while (str[i] != '\'' && str[i])
+				i++;
+			if (str[i] == '\'')
+				cbontkt++;
+		}
 	}
 	return (cbontkt);
 }
 
 int main(int ac, char **av, char **envp)
 {
-	t_data	data;
+	// t_data	data;
 	char	*tmp;
 
-	int	i = 0;
+	(void)ac;
+	(void)av;
+	(void)envp;
+	// int	i = 0;
 	while (1)
 	{
 		tmp = readline("Jacquie&Minishell <3 ");
 		add_history(tmp);
-		printf("%s\n", tmp);
+		// printf("%d\n", checkfermer(tmp));
+		if (checkfermer(tmp) % 2)
+		{
+			printf("oulala la grosse erreur\n");
+			free(tmp);
+		}
+		// printf("%s\n", tmp);
 	}
-	ac = 0;
-	av = NULL;
-	data.env = tab_dup(envp);
-	while (data.env[i])
-	{
-		printf("line %d -> %s\n", i + 1, data.env[i]);
-		i++;
-	}
-	data.path = get_all_path(envp, "PATH=");
-	data.pwd = get_all_path(envp, "PWD=");
+	// data.env = tab_dup(envp);
+	// while (data.env[i])
+	// {
+	// 	printf("line %d -> %s\n", i + 1, data.env[i]);
+	// 	i++;
+	// }
+	// data.path = get_all_path(envp, "PATH=");
+	// data.pwd = get_all_path(envp, "PWD=");
 	return (0);
 }

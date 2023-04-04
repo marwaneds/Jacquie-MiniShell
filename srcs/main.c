@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+        */
+/*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:53:13 by cortiz            #+#    #+#             */
-/*   Updated: 2023/04/03 19:55:44 by carlosortiz      ###   ########.fr       */
+/*   Updated: 2023/04/04 11:06:40 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 char	*get_all_path(char **envp, char *get)
 {
@@ -26,43 +26,37 @@ char	*get_all_path(char **envp, char *get)
 	return (0);
 }
 
+static void fermer_utils(int *i, char quote, char *str, int *y)
+{
+	if (str[*i] == quote)
+		{
+			*y += 1;
+			*i += 1;
+			while (str[*i] != quote && str[*i])
+				*i += 1;
+			if (str[*i] == quote)
+				*y += 1;
+		}
+}
+
 int	checkfermer(char *str)
 {
 	int	i;
-	int	cbontkt;
+	int	y;
 
 	i = -1;
-	cbontkt = 0;
+	y = 0;
 	while (str[++i])
 	{
-		if (str[i] == '\"')
-		{
-			cbontkt++;
-			i++;
-			while (str[i] != '\"' && str[i])
-				i++;
-			if (str[i] == '\"')
-			{
-				cbontkt++;
-				i++;
-			}
-		}
-		if (str[i] == '\'')
-		{
-			cbontkt++;
-			i++;
-			while (str[i] != '\'' && str[i])
-				i++;
-			if (str[i] == '\'')
-				cbontkt++;
-		}
+		fermer_utils(&i, '\"', str, &y);
+		fermer_utils(&i, '\'', str, &y);
 	}
-	return (cbontkt);
+	return (y);
 }
 
 int main(int ac, char **av, char **envp)
 {
-	// t_data	data;
+	t_data	data;
 	char	*tmp;
 
 	(void)ac;
@@ -73,21 +67,12 @@ int main(int ac, char **av, char **envp)
 	{
 		tmp = readline("Jacquie&Minishell <3 ");
 		add_history(tmp);
-		// printf("%d\n", checkfermer(tmp));
+		add_lexer(tmp, &data);
 		if (checkfermer(tmp) % 2)
 		{
 			printf("oulala la grosse erreur\n");
 			free(tmp);
 		}
-		// printf("%s\n", tmp);
 	}
-	// data.env = tab_dup(envp);
-	// while (data.env[i])
-	// {
-	// 	printf("line %d -> %s\n", i + 1, data.env[i]);
-	// 	i++;
-	// }
-	// data.path = get_all_path(envp, "PATH=");
-	// data.pwd = get_all_path(envp, "PWD=");
 	return (0);
 }

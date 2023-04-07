@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:53:13 by cortiz            #+#    #+#             */
-/*   Updated: 2023/04/04 11:06:40 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/04/07 23:57:03 by carlosortiz      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,35 +44,41 @@ int	checkfermer(char *str)
 	int	i;
 	int	y;
 
-	i = -1;
+	i = 0;
 	y = 0;
-	while (str[++i])
+	while (str[i])
 	{
 		fermer_utils(&i, '\"', str, &y);
 		fermer_utils(&i, '\'', str, &y);
+		if (!(str[i]))
+			break;
+		i++;
 	}
 	return (y);
 }
 
 int main(int ac, char **av, char **envp)
 {
-	t_data	data;
+	t_data	*data;
 	char	*tmp;
 
 	(void)ac;
 	(void)av;
 	(void)envp;
-	// int	i = 0;
+	data = malloc(sizeof(t_data));
+	if (!data)
+		return (0);
 	while (1)
 	{
-		tmp = readline("Jacquie&Minishell <3 ");
-		add_history(tmp);
-		add_lexer(tmp, &data);
+		tmp = readline("[1]    17176 abort      ./minishell");
 		if (checkfermer(tmp) % 2)
 		{
 			printf("oulala la grosse erreur\n");
 			free(tmp);
+			return(0);
 		}
+		add_history(tmp);
+		init_lexer(ft_strtrim(tmp, " "), data);
 	}
 	return (0);
 }

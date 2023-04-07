@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maitre_split.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 09:24:25 by cortiz            #+#    #+#             */
-/*   Updated: 2023/04/04 11:15:16 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/04/07 23:56:36 by carlosortiz      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,119 @@
 
 int	is_token(char c)
 {
-	if (c == '|')
-		return (PIPE);
-	if (c == '>')
-		return (GREAT);
-	if (c == '<')
-		return (LESS);
-	return (0);
+	return (c == '<' ||  c == '>' || c == '|');
 }
 
-static void	affiche(char **str)
+int	get_token(char *str, int *i, int *tokken)
 {
-	int i = 0;
+	if (str[*i] == '<' && str[*i + 1] == '<')
+		*tokken = LESS_LESS;
+	else if (str[*i] == '>' && str[*i + 1] == '>')
+		*tokken = GREAT_GREAT;
+	else if (str[*i] == '>')
+		*tokken = GREAT;
+	else if (str[*i] == '<')
+		*tokken = LESS;
+	else if (str[*i] == '|')
+		*tokken = PIPE;
+	else
+		*tokken = 0;
+	if (*tokken == LESS_LESS || *tokken == GREAT_GREAT)
+		*i += 2;
+	else if (*tokken)
+		*i += 1;
+	return (*tokken);
+}
+
+// static void	affiche(char **str)
+// {
+// 	int i = 0;
+// 	while (str[i])
+// 	{
+// 		printf("%s\n", str[i]);
+// 		i++;
+// 	}
+// }
+
+void printList(t_lexer *head) {
+    t_lexer *current = head;
+    while (current != NULL) {
+        printf("%s\n", current->str);
+        current = current->next;
+    }
+}
+
+void	add_node(t_lexer **lexer, char *str, int tokken)
+{
+	t_lexer *tmp;
+
+	tmp = (t_lexer *)malloc(sizeof(t_lexer));
+	if (!tmp)
+		exit(1); //FO FREE
+	tmp->str = str;
+	tmp->token = tokken;
+	tmp->next = NULL;
+	tmp->prev = NULL;
+	lexer_adback(lexer, tmp);
+}
+
+void	add_word(char *str, int *i, t_data *data)
+{
+	int		j;
+	char	*tmp;
+
+	j = *i;
+	while (!is_token(str[j]) && str[j] != '\'' && str[j] != '\"' && !ft_iswhitespace(str[j]) && str[j])
+		j++;
+	tmp = ft_substr(str, *i, j - *i);
+	if (tmp)
+		add_node(&data->lexer, tmp, 0);
+	*i = j;
+}
+
+void	skip_quotes(int *i, char *str, char quote)
+{
+	if (str[*i] == quote)
+	{
+		*i += 1;
+		while (str[*i] && str[*i] != quote)
+			*i += 1;
+		if (str[*i] == quote)
+			*i += 1;
+	}
+}
+
+void	init_lexer(char *str, t_data *data)
+{
+	int		i;
+	int		j;
+	int		tokken;
+
+	i = 0;
+	tokken = 0;
+	data->lexer = NULL;
 	while (str[i])
 	{
-		printf("%s\n", str[i]);
-		i++;
-	}
-}
-
-void	add_lexer(char *str, t_data *data)
-{
-	char	**tmp;
-	int		i;
-	// int		token;
-
-	i = -1;
-	tmp = ft_split(str, ' ');
-	while (tmp[++i])
-	{
-		if ((int)ft_strlen(tmp[i]) == is_token(*tmp[i]))
+		while (ft_iswhitespace(str[i]))
+			i++;
+		if (str[i] == '\"')
 		{
-			data->lexer.str = NULL;
-			data->lexer.i = is_token(*tmp[i]);
+			j = i;
+			skip_quotes(&j, str, '\"');
+			add_node(&data->lexer, ft_substr(str, i, j - i), 0);
+			i = j;
 		}
+		if (str[i] == '\'')
+		{
+			j = i;
+			skip_quotes(&j, str, '\'');
+			add_node(&data->lexer, ft_substr(str, i, j - i), 0);
+			i = j;
+		}
+		if (get_token(str, &i, &tokken))
+			add_node(&data->lexer, NULL, tokken);
 		else
-			data->lexer.str = tmp[i];
+			add_word(str, &i, data);
 	}
-	affiche(&data->lexer.str);
+	printList(data->lexer);
 }
-

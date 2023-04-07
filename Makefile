@@ -3,24 +3,26 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+         #
+#    By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/04/04 11:08:47 by cortiz           ###   ########.fr        #
+#    Updated: 2023/04/07 23:57:48 by carlosortiz      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 RM = rm -rf
 
 INC_DIR = includes
 SRCS_DIR = srcs
 OBJS_DIR = objs
 
-SRCS = main.c maitre_split.c
+SRCS =	main.c			\
+		maitre_split.c 	\
+		utils.c			\
 
 OBJS = $(addprefix ${OBJS_DIR}/, ${SRCS:%.c=%.o})
 

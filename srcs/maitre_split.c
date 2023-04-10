@@ -6,7 +6,7 @@
 /*   By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 09:24:25 by cortiz            #+#    #+#             */
-/*   Updated: 2023/04/07 23:56:36 by carlosortiz      ###   ########.fr       */
+/*   Updated: 2023/04/10 12:32:48 by carlosortiz      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	get_token(char *str, int *i, int *tokken)
 void printList(t_lexer *head) {
     t_lexer *current = head;
     while (current != NULL) {
-        printf("%s\n", current->str);
+        printf("[%s]\n", current->str);
         current = current->next;
     }
 }
@@ -70,20 +70,6 @@ void	add_node(t_lexer **lexer, char *str, int tokken)
 	lexer_adback(lexer, tmp);
 }
 
-void	add_word(char *str, int *i, t_data *data)
-{
-	int		j;
-	char	*tmp;
-
-	j = *i;
-	while (!is_token(str[j]) && str[j] != '\'' && str[j] != '\"' && !ft_iswhitespace(str[j]) && str[j])
-		j++;
-	tmp = ft_substr(str, *i, j - *i);
-	if (tmp)
-		add_node(&data->lexer, tmp, 0);
-	*i = j;
-}
-
 void	skip_quotes(int *i, char *str, char quote)
 {
 	if (str[*i] == quote)
@@ -91,15 +77,32 @@ void	skip_quotes(int *i, char *str, char quote)
 		*i += 1;
 		while (str[*i] && str[*i] != quote)
 			*i += 1;
-		if (str[*i] == quote)
-			*i += 1;
+		// if (str[*i] == quote)
+		// 	*i += 1;
 	}
+}
+
+void	add_word(char *str, int *i, t_data *data)
+{
+	int		j;
+	char	*tmp;
+
+	j = *i;
+	while (!is_token(str[j]) && !ft_iswhitespace(str[j]) && str[j])
+	{
+		skip_quotes(&j, str, '\'');
+		skip_quotes(&j, str, '\"');
+		j++;
+	}
+	tmp = ft_substr(str, *i, j - *i);
+	if (tmp)
+		add_node(&data->lexer, tmp, 0);
+	*i = j;
 }
 
 void	init_lexer(char *str, t_data *data)
 {
 	int		i;
-	int		j;
 	int		tokken;
 
 	i = 0;
@@ -109,20 +112,6 @@ void	init_lexer(char *str, t_data *data)
 	{
 		while (ft_iswhitespace(str[i]))
 			i++;
-		if (str[i] == '\"')
-		{
-			j = i;
-			skip_quotes(&j, str, '\"');
-			add_node(&data->lexer, ft_substr(str, i, j - i), 0);
-			i = j;
-		}
-		if (str[i] == '\'')
-		{
-			j = i;
-			skip_quotes(&j, str, '\'');
-			add_node(&data->lexer, ft_substr(str, i, j - i), 0);
-			i = j;
-		}
 		if (get_token(str, &i, &tokken))
 			add_node(&data->lexer, NULL, tokken);
 		else

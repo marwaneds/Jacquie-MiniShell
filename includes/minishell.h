@@ -61,5 +61,5 @@ void		c_handler_doc(int sig);
 void		q_handler(int sig);
 void		c_handler_2(int sig);
 void		d_handler(int sig);
-
+void		rl_replace_line (const char *text, int clear_undo);
 #endif

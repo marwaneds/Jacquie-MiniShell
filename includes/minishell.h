@@ -7,6 +7,7 @@
 # include <readline/history.h>
 # include <unistd.h>
 # include <stdlib.h>
+
 # define BOZO_MAX INT_MAX
 # define BOZO_MIN INT_INT
 
@@ -49,5 +50,16 @@ void	init_lexer(char *str, t_data *data);
 /*	main	*/
 char	*get_all_path(char **envp, char *get);
 int		checkfermer(char *str);
+
+/*	signal	*/
+// void	handle_sigint(int sig);
+// void	handle_sigquit(int sig);
+void		c_handler(int sig);
+void		c_handler_fork(int sig);
+void		q_handler_fork(int sig);
+void		c_handler_doc(int sig);
+void		q_handler(int sig);
+void		c_handler_2(int sig);
+void		d_handler(int sig);
 
 #endif

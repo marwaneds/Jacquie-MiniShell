@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+         #
+#    By: mel-faqu <mel-faqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/04/07 23:57:48 by carlosortiz      ###   ########.fr        #
+#    Updated: 2023/04/12 07:01:47 by mel-faqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ OBJS_DIR = objs
 SRCS =	main.c			\
 		maitre_split.c 	\
 		utils.c			\
+		signal.c			\
 
 OBJS = $(addprefix ${OBJS_DIR}/, ${SRCS:%.c=%.o})
 

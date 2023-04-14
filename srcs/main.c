@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+        */
+/*   By: mel-faqu <mel-faqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:53:13 by cortiz            #+#    #+#             */
-/*   Updated: 2023/04/07 23:57:03 by carlosortiz      ###   ########.fr       */
+/*   Updated: 2023/04/12 07:37:23 by mel-faqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,10 @@ int main(int ac, char **av, char **envp)
 		return (0);
 	while (1)
 	{
+		signal(SIGINT, c_handler);
+		signal(SIGQUIT, SIG_IGN);
+		// signal(SIGINT, handle_sigint);
+		// signal(SIGQUIT, handle_sigquit);
 		tmp = readline("[1]    17176 abort      ./minishell");
 		if (checkfermer(tmp) % 2)
 		{

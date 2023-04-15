@@ -6,7 +6,7 @@
 /*   By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 09:24:25 by cortiz            #+#    #+#             */
-/*   Updated: 2023/04/10 12:32:48 by carlosortiz      ###   ########.fr       */
+/*   Updated: 2023/04/15 14:22:20 by carlosortiz      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,26 @@ void printList(t_lexer *head) {
     t_lexer *current = head;
     while (current != NULL) {
         printf("[%s]\n", current->str);
+        printf("[%d]\n\n", current->i);
         current = current->next;
     }
 }
 
 void	add_node(t_lexer **lexer, char *str, int tokken)
 {
-	t_lexer *tmp;
+	t_lexer 	*tmp;
+	static int	i = 0;
 
 	tmp = (t_lexer *)malloc(sizeof(t_lexer));
 	if (!tmp)
 		exit(1); //FO FREE
 	tmp->str = str;
 	tmp->token = tokken;
+	tmp->i = i;
 	tmp->next = NULL;
 	tmp->prev = NULL;
 	lexer_adback(lexer, tmp);
+	i++;
 }
 
 void	skip_quotes(int *i, char *str, char quote)

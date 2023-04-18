@@ -39,6 +39,17 @@ typedef struct	s_data
 	t_lexer		*lexer;
 }				t_data;
 
+typedef struct s_simple_cmds
+{
+	char                    **str;
+	char					*builtins;
+	int                     num_redirections;
+	char                    *hd_file_name;
+	t_lexer                 *redirections;
+	struct s_simple_cmds	*next;
+	struct s_simple_cmds	*prev;
+}	t_simple_cmds;
+
 /* utils */
 int		ft_iswhitespace(char c);
 void	lexer_adback(t_lexer **lexer, t_lexer *new);

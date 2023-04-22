@@ -1,5 +1,19 @@
 #include "../includes/minishell.h"
 
+void	is_builtin(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+	{
+		if (strcmp())
+	}
+}
+
+// fonction qui cree chaque node afin de l'ajouter dans notre data (add_to_parser)
 void	create_node(t_data *data, t_simple_cmds *parser)
 {
 	if (is_builtin(data->lexer->str))
@@ -35,7 +49,7 @@ void	parser_init(t_data *data)
 {
 	t_simple_cmds	*parser;
 	// check_les erreurs
-	if (check_errors)
+	if (check_errors(data))
 		{
 			// on free tout
 			// et on quitte

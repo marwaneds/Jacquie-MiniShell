@@ -1,6 +1,6 @@
 #include "../includes/minishell.h"
 
-void	is_builtin(char *str)
+int	is_builtin(char *str)
 {
 	int	i;
 
@@ -9,7 +9,8 @@ void	is_builtin(char *str)
 		return (0);
 	while (str[i])
 	{
-		if (strcmp())
+		if (str[0] == '\'' || str[0] == '\"')
+			if (ft_strncmp("echo", &str[1], ft_strlen(str) - 1))
 	}
 }
 
@@ -24,7 +25,7 @@ void	create_node(t_data *data, t_simple_cmds *parser)
 void	add_to_parser(t_data *data, t_simple_cmds *parser, int i)
 {
 	int	j;
-	char	*str
+	char	*str;
 
 	j = 0;
 	while (j < i)
@@ -38,7 +39,7 @@ void	pipe_manager(t_data *data, t_simple_cmds *parser)
 {
 	while (data->lexer)
 	{
-		if (data->lexer->token)
+		if (data->lexer->token == PIPE)
 		{
 			add_to_parser(data, parser, data->lexer->i);
 		}

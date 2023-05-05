@@ -53,6 +53,7 @@ typedef struct s_simple_cmds
 /* utils */
 int		ft_iswhitespace(char c);
 void	lexer_adback(t_lexer **lexer, t_lexer *new);
+int		ft_strcmp(const char *str1, const char *str2);
 
 /*	maitre_split  */
 int		get_token(char *str, int *i, int *tokken);
@@ -65,12 +66,17 @@ int		checkfermer(char *str);
 /*	signal	*/
 // void	handle_sigint(int sig);
 // void	handle_sigquit(int sig);
-void		c_handler(int sig);
-void		c_handler_fork(int sig);
-void		q_handler_fork(int sig);
-void		c_handler_doc(int sig);
-void		q_handler(int sig);
-void		c_handler_2(int sig);
-void		d_handler(int sig);
-void		rl_replace_line (const char *text, int clear_undo);
+void	c_handler(int sig);
+void	c_handler_fork(int sig);
+void	q_handler_fork(int sig);
+void	c_handler_doc(int sig);
+void	q_handler(int sig);
+void	c_handler_2(int sig);
+void	d_handler(int sig);
+void	rl_replace_line (const char *text, int clear_undo);
+
+/* Parser */
+int		is_builtin(char *command);
+void	parser_init(t_data *data);
+
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-faqu <mel-faqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:53:13 by cortiz            #+#    #+#             */
-/*   Updated: 2023/04/12 07:37:23 by mel-faqu         ###   ########.fr       */
+/*   Updated: 2023/04/28 10:53:44 by carlosortiz      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int main(int ac, char **av, char **envp)
 		}
 		add_history(tmp);
 		init_lexer(ft_strtrim(tmp, " "), data);
+		parser_init(data);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 09:24:25 by cortiz            #+#    #+#             */
-/*   Updated: 2023/04/15 14:22:20 by carlosortiz      ###   ########.fr       */
+/*   Updated: 2023/04/27 12:49:00 by carlosortiz      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,11 @@ int	get_token(char *str, int *i, int *tokken)
 // 	}
 // }
 
-void printList(t_lexer *head) {
+void printList(t_lexer *head)
+{
     t_lexer *current = head;
-    while (current != NULL) {
+    while (current != NULL)
+	{
         printf("[%s]\n", current->str);
         printf("[%d]\n\n", current->i);
         current = current->next;

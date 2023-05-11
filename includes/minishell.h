@@ -58,6 +58,7 @@ int		ft_strcmp(const char *str1, const char *str2);
 /*	maitre_split  */
 int		get_token(char *str, int *i, int *tokken);
 void	init_lexer(char *str, t_data *data);
+void	skip_quotes(int *i, char *str, char quote);
 
 /*	main	*/
 char	*get_all_path(char **envp, char *get);
@@ -74,6 +75,9 @@ void	q_handler(int sig);
 void	c_handler_2(int sig);
 void	d_handler(int sig);
 void	rl_replace_line (const char *text, int clear_undo);
+
+/* expander */
+void	expander(t_lexer *lexer);
 
 /* Parser */
 int		is_builtin(char *command);

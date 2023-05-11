@@ -82,7 +82,7 @@ void	skip_quotes(int *i, char *str, char quote)
 
 int main(int ac, char **av)
 {
-	char *command = "\"echo\"" "salut";
+	char *command = "echo";
 	if (is_builtin(command))
 		printf ("(%s) est un builtin\n", command);
 	else

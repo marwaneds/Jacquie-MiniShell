@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+         #
+#    By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/04/28 09:46:48 by carlosortiz      ###   ########.fr        #
+#    Updated: 2023/05/11 06:46:37 by cortiz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS =	main.c			\
 		signal.c		\
 		parser_utils.c	\
 		parser.c		\
+		expander.c		\
 
 OBJS = $(addprefix ${OBJS_DIR}/, ${SRCS:%.c=%.o})
 

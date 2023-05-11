@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+        */
+/*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:53:13 by cortiz            #+#    #+#             */
-/*   Updated: 2023/04/28 10:53:44 by carlosortiz      ###   ########.fr       */
+/*   Updated: 2023/05/11 09:26:43 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ int main(int ac, char **av, char **envp)
 		}
 		add_history(tmp);
 		init_lexer(ft_strtrim(tmp, " "), data);
-		parser_init(data);
+		expander(data->lexer);
+		// parser_init(data);
 	}
 	return (0);
 }

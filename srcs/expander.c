@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+        */
+/*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 06:46:40 by cortiz            #+#    #+#             */
-/*   Updated: 2023/05/14 13:29:33 by carlosortiz      ###   ########.fr       */
+/*   Updated: 2023/05/15 11:24:08 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,21 @@ int	is_quote(char c)
 	return (c == '"' | c == '\'');
 }
 
-// char	*get_env_data(char *index)
-// {
-	
-// }
+char	*get_env_data(char *index, t_data *data)
+{
+	int		i;
+	int		size;
+
+	size = ft_strlen(index);
+	i = 0;
+	while (data->env[i])
+	{
+		if (!ft_strncmp(data->env[i], index, size))
+			return (&data->env[i][size + 1]);
+		i++;
+	}
+	return (0);
+}
 
 char	*word_after_dollar(int i, char *str)
 {
@@ -37,12 +48,12 @@ char	*word_after_dollar(int i, char *str)
 	return (index);
 }
 
-void	handle_quotes(char *str)
+void	handle_quotes(char *str, t_data *data)
 {
 	int		i;
 	// int		j;
 	// int		inquotes;
-	// char	*env_data;
+	char	*env_data;
 	char	*index;
 
 	// inquotes = 0;
@@ -57,15 +68,10 @@ void	handle_quotes(char *str)
 			{
 				if (str[i] == '$' && str[i] != ' ' && str[i] != '\0')
 				{
-					// i++;
-					// while (ft_isalpha(str[i + j]))
-					// 	j++;
-					// index = malloc(sizeof(char) * (j + 1));
-					// index[j] = 0;
-					// strncpy(index, &str[i], j);
 					index = word_after_dollar(i, str);
-					printf("%s\n", index);
-					// env_data = get_env_data();
+					printf("word after dollar = %s\n", index);
+					env_data = get_env_data(index, data);
+					printf("value of %s = %s\n", index, env_data);
 				}
 				i++;
 			}
@@ -74,14 +80,14 @@ void	handle_quotes(char *str)
 	}
 }
 
-void	expander(t_lexer *lexer)
+void	expander(t_data *data)
 {
 	t_lexer	*tmp;
 
-	tmp = lexer;
+	tmp = data->lexer;
 	while (tmp)
 	{
-		handle_quotes(tmp->str);
+		handle_quotes(tmp->str, data);
 		tmp = tmp->next;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maitre_split.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+        */
+/*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 09:24:25 by cortiz            #+#    #+#             */
-/*   Updated: 2023/04/27 12:49:00 by carlosortiz      ###   ########.fr       */
+/*   Updated: 2023/05/15 10:28:37 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,5 @@ void	init_lexer(char *str, t_data *data)
 		else
 			add_word(str, &i, data);
 	}
-	printList(data->lexer);
+	// printList(data->lexer);
 }

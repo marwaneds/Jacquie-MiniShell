@@ -6,7 +6,7 @@
 /*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:53:13 by cortiz            #+#    #+#             */
-/*   Updated: 2023/05/11 09:26:43 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/05/15 10:38:40 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,12 @@ int	checkfermer(char *str)
 	return (y);
 }
 
+void	init_data(t_data *data, char *tmp, char **envp)
+{
+	init_lexer(ft_strtrim(tmp, " "), data);
+	data->env = tab_cpy(envp);
+}
+
 int main(int ac, char **av, char **envp)
 {
 	t_data	*data;
@@ -74,7 +80,7 @@ int main(int ac, char **av, char **envp)
 		signal(SIGQUIT, SIG_IGN);
 		// signal(SIGINT, handle_sigint);
 		// signal(SIGQUIT, handle_sigquit);
-		tmp = readline("[1]    17176 abort      ./minishell");
+		tmp = readline("[1]    17176 abort      ./minishell ");
 		if (checkfermer(tmp) % 2)
 		{
 			printf("oulala la grosse erreur\n");
@@ -82,8 +88,8 @@ int main(int ac, char **av, char **envp)
 			return(0);
 		}
 		add_history(tmp);
-		init_lexer(ft_strtrim(tmp, " "), data);
-		expander(data->lexer);
+		init_data(data, tmp, envp);
+		expander(data);
 		// parser_init(data);
 	}
 	return (0);

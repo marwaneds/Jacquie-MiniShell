@@ -55,6 +55,7 @@ int		ft_iswhitespace(char c);
 void	lexer_adback(t_lexer **lexer, t_lexer *new);
 int		ft_strcmp(const char *str1, const char *str2);
 char	**tab_cpy(char **src);
+char	*exp_strjoin(char const *s1, char const *s2);
 
 /*	maitre_split  */
 int		get_token(char *str, int *i, int *tokken);

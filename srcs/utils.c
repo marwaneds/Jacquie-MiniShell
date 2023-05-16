@@ -59,3 +59,31 @@ void	lexer_adback(t_lexer **lexer, t_lexer *new)
 	// printf("str = %s\nand\n", lexer->str);
 	// printf("token = %d\n\n", lexer->token);
 }
+char	*exp_strjoin(char const *s1, char const *s2)
+{
+	char	*ret;
+	int		i;
+	int		j;
+	int		len1;
+	int		len2;
+
+	if (!s1 || !s2)
+		return (0);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	ret = malloc(sizeof(char) * (len1 + len2 + 1));
+	if (!ret)
+		return (0);
+	i = 0;
+	j = 0;
+	while (s1[i])
+	{
+		ret[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+		ret[i++] = s2[j++];
+	ret[i] = '\0';
+	free((void *)s1);
+	return (ret);
+}

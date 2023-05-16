@@ -6,7 +6,7 @@
 /*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 06:46:40 by cortiz            #+#    #+#             */
-/*   Updated: 2023/05/16 10:54:19 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/05/16 12:54:09 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,12 @@ char	*expand(int start, int end, char *str, char *new_str)
 		return (0);//FO FREE ET EXIT;
 	expanded[start] = 0;
 	ft_memcpy(expanded, str, start);
-	return ("salyt");
+	printf("first part : %s\n", expanded);
+	if (new_str)
+		expanded = exp_strjoin(expanded, new_str);
+	expanded = exp_strjoin(expanded, &str[end + 1]);
+	printf("final result %s\n", expanded);
+	return (expanded);
 }
 
 void	handle_quotes(char *str, t_data *data)
@@ -79,7 +84,7 @@ void	handle_quotes(char *str, t_data *data)
 			i++;
 			while (str[i] != '"')
 			{
-				if (str[i] == '$' && str[i + 1] != ' ' && str[i + 1] != '\0')
+				if (str[i] == '$' && str[i + 1] != ' ' && str[i + 1] != '\0' && str[i + 1] != '\"')
 				{
 					index = word_after_dollar(i, str, &j);
 					printf("word after dollar = %s\n", index);
@@ -87,7 +92,7 @@ void	handle_quotes(char *str, t_data *data)
 					printf("value of %s = %s\n", index, env_data);
 					printf("valeur de i%d\n", i);
 					printf("valeur de j%d\n", j);
-					expand(i, j, str, env_data);
+					expand(i, i + j, str, env_data);
 					i += j;
 				}
 				i++;

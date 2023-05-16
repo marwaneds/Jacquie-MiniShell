@@ -6,7 +6,7 @@
 /*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 06:46:40 by cortiz            #+#    #+#             */
-/*   Updated: 2023/05/16 12:54:09 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/05/16 13:06:18 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,8 @@ void	expander(t_data *data)
 	tmp = data->lexer;
 	while (tmp)
 	{
-		handle_quotes(tmp->str, data);
+		if (tmp->str)
+			handle_quotes(tmp->str, data);
 		tmp = tmp->next;
 	}
 }

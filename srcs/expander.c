@@ -6,7 +6,7 @@
 /*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 06:46:40 by cortiz            #+#    #+#             */
-/*   Updated: 2023/05/22 14:26:02 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/05/22 19:05:46 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ char	*get_env_data(char *index, t_data *data)
 	int		size;
 
 	size = ft_strlen(index);
+	printf("LA SIZEEEEEEEE = %d\n", size);
 	i = 0;
 	while (data->env[i])
 	{
+		printf("VALEUR DE ENV LAAAAAAAAAAAA = %s\n", data->env[i]);
 		if (!ft_strncmp(data->env[i], index, size))
 			return (&data->env[i][size + 1]);
 		i++;
@@ -63,7 +65,7 @@ char	*expand(int *start, int end, char *str, char *new_str)
 		expanded = exp_strjoin(expanded, new_str);
 	*start = ft_strlen(expanded) - 1;
 	expanded = exp_strjoin(expanded, &str[end + 1]);
-	// printf("final result %s:\n", expanded);
+	printf("final result %s:\n", expanded);
 	return (expanded);
 }
 
@@ -71,22 +73,20 @@ char	*handle_quotes(char *str, t_data *data)
 {
 	int		i;
 	int		j;
-	// int		inquotes;
 	char	*env_data;
 	char	*index;
 
-	// inquotes = 0;
 	j = 0;
 	i = 0;
 	while (str[i])
 	{
 		if (str[i] == '\'')
 			skip_quotes(&i, str, '\'');
-		// if (str[i] == '"')
-		// {
-		// 	i++;
-		// 	while (str[i] != '"')
-		// 	{
+		if (str[i] == '"')
+		{
+			i++;
+			while (str[i] != '"')
+			{
 				if (str[i] == '$' && str[i + 1] != ' ' && str[i + 1] != '\0' && str[i + 1] != '\"' && ft_isalnum(str[i + 1]))
 				{
 					j = 0;
@@ -97,13 +97,11 @@ char	*handle_quotes(char *str, t_data *data)
 					printf("valeur de i%d\n", i);
 					printf("valeur de j%d\n", j);
 					str = expand(&i, i + j, str, env_data);
-					// str = remove_quotes(str);
-					// printf("mon STR VAUT : %s\n", str);
-					// i += j;
+					printf("mon STR VAUT : %s\n", str);
 				}
-		// 		i++;
-		// 	}
-		// }
+				i++;
+			}
+		}
 		i++;
 	}
 	return (str);
@@ -164,7 +162,8 @@ void	expander(t_data *data)
 				return ;
 			}
 		}
-		printf("mon str = %s\n", tmp->str);
+		// printf("mon str = %s\n", tmp->str);
 		tmp = tmp->next;
 	}
+	// printList(data->lexer);
 }

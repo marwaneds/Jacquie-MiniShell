@@ -62,6 +62,8 @@ int		is_quotes(char c);
 int		get_token(char *str, int *i, int *tokken);
 void	init_lexer(char *str, t_data *data);
 void	skip_quotes(int *i, char *str, char quote);
+/*A EFFFFAAAACCCCEEEERRRRR JE PENSE JE C PAS ENFAITE*/
+void	printList(t_lexer *head);
 
 /*	main	*/
 char	*get_all_path(char **envp, char *get);

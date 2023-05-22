@@ -6,7 +6,7 @@
 /*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:17:30 by cortiz            #+#    #+#             */
-/*   Updated: 2023/05/17 20:17:31 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/05/22 14:27:05 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,4 +98,9 @@ char	*exp_strjoin(char const *s1, char const *s2)
 	ret[i] = '\0';
 	free((void *)s1);
 	return (ret);
+}
+/*Pour mon expander*/
+int is_quotes(char c)
+{
+    return (c == '\'' || c == '\"');
 }

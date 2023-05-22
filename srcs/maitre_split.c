@@ -6,7 +6,7 @@
 /*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 09:24:25 by cortiz            #+#    #+#             */
-/*   Updated: 2023/05/15 10:28:37 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/05/22 11:45:32 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,6 @@ int	get_token(char *str, int *i, int *tokken)
 		*i += 1;
 	return (*tokken);
 }
-
-// static void	affiche(char **str)
-// {
-// 	int i = 0;
-// 	while (str[i])
-// 	{
-// 		printf("%s\n", str[i]);
-// 		i++;
-// 	}
-// }
 
 void printList(t_lexer *head)
 {

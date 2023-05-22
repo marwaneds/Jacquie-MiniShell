@@ -6,7 +6,7 @@
 /*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 06:46:40 by cortiz            #+#    #+#             */
-/*   Updated: 2023/05/18 14:33:59 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/05/22 14:26:02 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*word_after_dollar(int i, char *str,int *j)
 	char	*index;
 
 	i++;
-	while (ft_isalpha(str[i + *j]))
+	while (ft_isalnum(str[i + *j]))
 		*j += 1;
 	index = malloc(sizeof(char) * (*j + 1));
 	index[*j] = 0;
@@ -80,12 +80,14 @@ char	*handle_quotes(char *str, t_data *data)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '"')
-		{
-			i++;
-			while (str[i] != '"')
-			{
-				if (str[i] == '$' && str[i + 1] != ' ' && str[i + 1] != '\0' && str[i + 1] != '\"' && ft_isalpha(str[i + 1]))
+		if (str[i] == '\'')
+			skip_quotes(&i, str, '\'');
+		// if (str[i] == '"')
+		// {
+		// 	i++;
+		// 	while (str[i] != '"')
+		// 	{
+				if (str[i] == '$' && str[i + 1] != ' ' && str[i + 1] != '\0' && str[i + 1] != '\"' && ft_isalnum(str[i + 1]))
 				{
 					j = 0;
 					index = word_after_dollar(i, str, &j);
@@ -99,12 +101,51 @@ char	*handle_quotes(char *str, t_data *data)
 					// printf("mon STR VAUT : %s\n", str);
 					// i += j;
 				}
-				i++;
-			}
-		}
+		// 		i++;
+		// 	}
+		// }
 		i++;
 	}
 	return (str);
+}
+
+int remove_quotes(char *cpy, char *str)
+{
+    int i;
+    int j;
+
+    i = 0;
+    j = 0;
+    while (cpy[i])
+    {
+        if (cpy[i] == '\"')
+            while(cpy[++i] && cpy[i] != '\"')
+                str[j++] = cpy[i];
+        if (cpy[i] == '\"')
+            i++;
+        if (cpy[i] == '\'')
+			while(cpy[++i] && cpy[i] != '\'')
+                str[j++] = cpy[i];
+        if (cpy[i] == '\'')
+            i++;
+        if (!is_quotes(cpy[i]))
+            while (cpy[i] && !is_quotes(cpy[i]))
+                str[j++] = cpy[i++];
+    }
+    return (j);
+}
+
+int loop_through_str(char *str)
+{
+    int i;
+    char *cpy;
+
+    cpy = strdup(str);
+    if (!cpy)
+        return (0);
+    i = remove_quotes(cpy, str);
+    str[i] = '\0';
+    return (1);
 }
 
 void	expander(t_data *data)
@@ -115,7 +156,14 @@ void	expander(t_data *data)
 	while (tmp)
 	{
 		if (tmp->str)
+		{
 			tmp->str = handle_quotes(tmp->str, data);
+			if (!loop_through_str(tmp->str))
+			{
+				//on free
+				return ;
+			}
+		}
 		printf("mon str = %s\n", tmp->str);
 		tmp = tmp->next;
 	}

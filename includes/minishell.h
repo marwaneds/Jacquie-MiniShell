@@ -89,4 +89,7 @@ void	expander(t_data *data);
 int		is_builtin(char *command);
 void	parser_init(t_data *data);
 
+/* builtins */
+void	execute_echo(char **args);
+
 #endif

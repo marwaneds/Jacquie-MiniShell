@@ -57,6 +57,7 @@ int		ft_strcmp(const char *str1, const char *str2);
 char	**tab_cpy(char **src);
 char	*exp_strjoin(char const *s1, char const *s2);
 int		is_quotes(char c);
+int		len_env_index(char *str);
 
 /*	maitre_split  */
 int		get_token(char *str, int *i, int *tokken);

@@ -6,11 +6,22 @@
 /*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:17:30 by cortiz            #+#    #+#             */
-/*   Updated: 2023/05/22 14:27:05 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/05/23 09:20:42 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*POUR MON EXPENDER*/
+int	len_env_index(char *str)
+{
+	int	i;
+	
+	i = 0;
+	while (str[i] != '=')
+		i++;
+	return (i);
+}
 
 int	tab_len(char **tab)
 {

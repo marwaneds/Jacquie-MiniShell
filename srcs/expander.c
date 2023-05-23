@@ -6,29 +6,23 @@
 /*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 06:46:40 by cortiz            #+#    #+#             */
-/*   Updated: 2023/05/22 19:05:46 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/05/23 12:57:09 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	is_quote(char c)
-{
-	return (c == '"' | c == '\'');
-}
 
 char	*get_env_data(char *index, t_data *data)
 {
 	int		i;
 	int		size;
 
-	size = ft_strlen(index);
-	printf("LA SIZEEEEEEEE = %d\n", size);
 	i = 0;
 	while (data->env[i])
 	{
-		printf("VALEUR DE ENV LAAAAAAAAAAAA = %s\n", data->env[i]);
-		if (!ft_strncmp(data->env[i], index, size))
+		size = len_env_index(data->env[i]);
+		// printf("VALEUR DE ENV LAAAAAAAAAAAA = %s\n", data->env[i]);
+		if (!ft_strncmp(data->env[i], index, size) && size == (int)ft_strlen(index))
 			return (&data->env[i][size + 1]);
 		i++;
 	}
@@ -60,12 +54,12 @@ char	*expand(int *start, int end, char *str, char *new_str)
 		return (0);//FO FREE ET EXIT;
 	expanded[*start] = 0;
 	ft_memcpy(expanded, str, *start);
-	printf("first part : %s\n", expanded);
+	// printf("first part : %s\n", expanded);
 	if (new_str)
 		expanded = exp_strjoin(expanded, new_str);
 	*start = ft_strlen(expanded) - 1;
 	expanded = exp_strjoin(expanded, &str[end + 1]);
-	printf("final result %s:\n", expanded);
+	// printf("final result %s:\n", expanded);
 	return (expanded);
 }
 
@@ -80,27 +74,45 @@ char	*handle_quotes(char *str, t_data *data)
 	i = 0;
 	while (str[i])
 	{
+		// printf("debut boucle = %s\n", &str[i]);
 		if (str[i] == '\'')
 			skip_quotes(&i, str, '\'');
-		if (str[i] == '"')
+		else if (str[i] == '"')
 		{
 			i++;
 			while (str[i] != '"')
 			{
-				if (str[i] == '$' && str[i + 1] != ' ' && str[i + 1] != '\0' && str[i + 1] != '\"' && ft_isalnum(str[i + 1]))
+				if (str[i] == '$' && str[i + 1] != ' ' && str[i + 1] != '\0' && str[i + 1] != '"' && ft_isalnum(str[i + 1]))
 				{
 					j = 0;
 					index = word_after_dollar(i, str, &j);
-					printf("word after dollar = %s\n", index);
+					// printf("word after dollar = %s\n", index);
 					env_data = get_env_data(index, data);
-					printf("value of %s = %s\n", index, env_data);
-					printf("valeur de i%d\n", i);
-					printf("valeur de j%d\n", j);
+					// printf("value of %s = %s\n", index, env_data);
+					// printf("valeur de i%d\n", i);
+					// printf("valeur de j%d\n", j);
 					str = expand(&i, i + j, str, env_data);
-					printf("mon STR VAUT : %s\n", str);
+					// printf("mon STR VAUT : %s\n", str);
 				}
 				i++;
 			}
+		}
+		else
+		{
+			while (str[i] && !is_quotes(str[i + 1]))
+			{
+				if (str[i] == '$' && str[i + 1] != '\0' && ft_isalnum(str[i + 1]))
+				{
+					j = 0;
+					index = word_after_dollar(i, str, &j);
+					env_data = get_env_data(index, data);
+					str = expand(&i, i + j, str, env_data);
+				}
+				i++;
+				// printf("%s:\n", &str[i]);
+			}
+			if (str[i] == '\0')
+				break;
 		}
 		i++;
 	}
@@ -154,8 +166,9 @@ void	expander(t_data *data)
 	while (tmp)
 	{
 		if (tmp->str)
-		{
-			tmp->str = handle_quotes(tmp->str, data);
+		{	
+			if (tmp->prev && tmp->prev->token != LESS_LESS)
+				tmp->str = handle_quotes(tmp->str, data);
 			if (!loop_through_str(tmp->str))
 			{
 				//on free
@@ -165,5 +178,5 @@ void	expander(t_data *data)
 		// printf("mon str = %s\n", tmp->str);
 		tmp = tmp->next;
 	}
-	// printList(data->lexer);
+	printList(data->lexer);
 }

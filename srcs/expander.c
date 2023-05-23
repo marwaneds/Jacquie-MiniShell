@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
+/*   By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 06:46:40 by cortiz            #+#    #+#             */
-/*   Updated: 2023/05/23 12:57:09 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/05/23 18:58:15 by carlosortiz      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,20 +163,21 @@ void	expander(t_data *data)
 	t_lexer	*tmp;
 
 	tmp = data->lexer;
-	while (tmp)
+	if (tmp->prev && tmp->prev->token != LESS_LESS)
+		tmp->str = handle_quotes(tmp->str, data);
+	while (tmp->next)
 	{
+		tmp = tmp->next;
 		if (tmp->str)
-		{	
+		{
 			if (tmp->prev && tmp->prev->token != LESS_LESS)
 				tmp->str = handle_quotes(tmp->str, data);
 			if (!loop_through_str(tmp->str))
 			{
-				//on free
-				return ;
+				// on free
+				return;
 			}
 		}
-		// printf("mon str = %s\n", tmp->str);
-		tmp = tmp->next;
 	}
 	printList(data->lexer);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlosortiz <carlosortiz@student.42.fr>    +#+  +:+       +#+        */
+/*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 06:46:40 by cortiz            #+#    #+#             */
-/*   Updated: 2023/05/23 18:58:15 by carlosortiz      ###   ########.fr       */
+/*   Updated: 2023/05/25 13:55:21 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,26 +158,35 @@ int loop_through_str(char *str)
     return (1);
 }
 
+int	prev_is_heredoc(t_lexer *tmp)
+{
+	if (!tmp->prev)
+		return (0);
+	if (tmp->prev->token == LESS_LESS)
+		return (1);
+	else
+		return (0);
+}
+
 void	expander(t_data *data)
 {
 	t_lexer	*tmp;
 
 	tmp = data->lexer;
-	if (tmp->prev && tmp->prev->token != LESS_LESS)
-		tmp->str = handle_quotes(tmp->str, data);
-	while (tmp->next)
+	while (tmp)
 	{
-		tmp = tmp->next;
 		if (tmp->str)
 		{
-			if (tmp->prev && tmp->prev->token != LESS_LESS)
+			printf("valeur fontction %d\n", prev_is_heredoc(tmp));
+			if (!prev_is_heredoc(tmp))
 				tmp->str = handle_quotes(tmp->str, data);
 			if (!loop_through_str(tmp->str))
 			{
-				// on free
-				return;
+				//on free
+				return ;
 			}
 		}
+		tmp = tmp->next;
 	}
 	printList(data->lexer);
 }

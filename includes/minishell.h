@@ -90,6 +90,6 @@ int		is_builtin(char *command);
 void	parser_init(t_data *data);
 
 /* builtins */
-void	execute_echo(char **args);
+int		execute_echo(t_simple_cmds *simple_cmd);
 
 #endif

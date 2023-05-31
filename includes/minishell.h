@@ -89,7 +89,13 @@ void	expander(t_data *data);
 int		is_builtin(char *command);
 void	parser_init(t_data *data);
 
-/* builtins */
+/* execute_echo */
 int		execute_echo(t_simple_cmds *simple_cmd);
+
+/* execute_env	*/
+int		execute_env(t_data	*data);
+
+/* mini_pwd	*/
+inT		mini_pwd(t_data *data, t_simple_cmds *simple_cmd);
 
 #endif

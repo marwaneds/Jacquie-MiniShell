@@ -6,11 +6,29 @@
 /*   By: mel-faqu <mel-faqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 12:01:26 by mel-faqu          #+#    #+#             */
-/*   Updated: 2023/05/31 12:27:35 by mel-faqu         ###   ########.fr       */
+/*   Updated: 2023/05/31 13:47:56 by mel-faqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	specific_path(t_data *data, char *str)
+{
+	char	*tmp;
+	int		ret;
+	
+	tmp = find_path(str, data);
+	ret = chdir(tmp);
+	//FAUX FREE TMP
+	if (ret != 0)
+	{
+		str = ft_substr(str, 0, ft_strlen(str) - 1);
+		ft_putstr_fd(str, STDERR_FILENO);
+		//FO FRI STR
+		ft_putendl_fd(" not set", STDERR_FILENO);
+	}
+	return (ret);
+}
 
 void	add_path_to_env(t_data *data)
 {

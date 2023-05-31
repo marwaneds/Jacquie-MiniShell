@@ -35,6 +35,7 @@ typedef struct	s_data
 {
 	char		**env;
 	char		*pwd;
+	char		*oldpwd;
 	char		*path;
 	t_lexer		*lexer;
 }				t_data;

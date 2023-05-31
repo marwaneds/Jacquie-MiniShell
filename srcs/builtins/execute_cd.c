@@ -6,11 +6,26 @@
 /*   By: mel-faqu <mel-faqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 12:01:26 by mel-faqu          #+#    #+#             */
-/*   Updated: 2023/05/31 13:47:56 by mel-faqu         ###   ########.fr       */
+/*   Updated: 2023/05/31 13:57:23 by mel-faqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char *find_path(char *str, t_data *data)
+{
+	int	i;
+	
+	i = 0;
+	while (data->env[i])
+	{
+		if (!ft_strncmp(data->env[i], str, ft_strlen(str)))
+			return (ft_substr(data->env[i], ft_strlen(str),
+					ft_strlen(data->env[i]) - ft_strlen(str)));
+		i++;
+	}
+	return NULL;
+}
 
 int	specific_path(t_data *data, char *str)
 {

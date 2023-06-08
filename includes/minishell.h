@@ -97,6 +97,6 @@ int		execute_echo(t_simple_cmds *simple_cmd);
 int		execute_env(t_data	*data);
 
 /* mini_pwd	*/
-inT		mini_pwd(t_data *data, t_simple_cmds *simple_cmd);
+int		mini_pwd(t_data *data, t_simple_cmds *simple_cmd);
 
 #endif

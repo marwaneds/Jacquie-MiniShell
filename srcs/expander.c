@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mel-faqu <mel-faqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 06:46:40 by cortiz            #+#    #+#             */
-/*   Updated: 2023/05/30 16:51:04 by mel-faqu         ###   ########.fr       */
+/*   Updated: 2023/06/08 09:12:56 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ void	expander(t_data *data)
 	{
 		if (tmp->str)
 		{
-			printf("valeur fontction %d\n", prev_is_heredoc(tmp));
+			// printf("valeur fontction %d\n", prev_is_heredoc(tmp));
 			if (!prev_is_heredoc(tmp))
 				tmp->str = handle_quotes(tmp->str, data);
 			if (!loop_through_str(tmp->str))

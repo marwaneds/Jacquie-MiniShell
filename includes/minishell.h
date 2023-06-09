@@ -2,11 +2,13 @@
 # define MINISHELL_H
 
 # include "../libft/libft.h"
+# include "get_next_line.h"
 # include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
 
 # define BOZO_MAX INT_MAX
 # define BOZO_MIN INT_INT
@@ -88,6 +90,11 @@ void	rl_replace_line(const char *text, int clear_undo);
 
 /* expander */
 void	expander(t_data *data);
+
+/* Executor */
+char	*generate_file();
+int		create_heredoc(t_lexer *heredoc, t_simple_cmds *cmds);
+void	check_heredoc(t_data *data);
 
 /* Parser */
 int		is_builtin(char *command);

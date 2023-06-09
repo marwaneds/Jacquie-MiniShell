@@ -15,20 +15,25 @@
 // 		execute_unset(data, data->simple_cmds);
 // }
 
-// void	check_heredoc(t_data *data)
-// {
-// 	if (data->simple_cmds)
-// }
+void	exec_cmd(t_data *data)
+{
+	(void)data;
+}
 
-// void	single_cmd(t_data *data)
-// {
-// 	// if (is_builtin(data->simple_cmds->builtins))
-// 		// exec_builtins(data);
-// 	check_heredoc(data);
-// }
+void	single_cmd(t_data *data)
+{
+	int	pid;
 
-// void	executor(t_data *data)
-// {
-// 	if (data->nb_pipes == 0)
-// 		single_cmd(data);
-// }
+	// if (is_builtin(data->simple_cmds->builtins))
+		// exec_builtins(data);
+	check_heredoc(data);
+	pid = fork();
+	if (pid == 0)
+		exec_cmd(data);
+}
+
+void	executor(t_data *data)
+{
+	if (data->nb_pipes == 0)
+		single_cmd(data);
+}

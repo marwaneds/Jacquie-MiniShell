@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+         #
+#    By: cortiz <cortiz@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/06/08 09:33:23 by cortiz           ###   ########.fr        #
+#    Updated: 2023/06/09 12:14:27 by cortiz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,14 +20,17 @@ INC_DIR = includes
 SRCS_DIR = srcs
 OBJS_DIR = objs
 
-SRCS =	main.c			\
-		maitre_split.c 	\
-		utils.c			\
-		signal.c		\
-		parser_utils.c	\
-		parser.c		\
-		expander.c		\
-		executor.c		\
+SRCS =	main.c						\
+		maitre_split.c 				\
+		utils.c						\
+		signal.c					\
+		parser_utils.c				\
+		parser.c					\
+		expander.c					\
+		executor/heredoc.c			\
+		executor/executor.c			\
+		gnl/get_next_line.c			\
+		gnl/get_next_line_utils.c	\
 
 OBJS = $(addprefix ${OBJS_DIR}/, ${SRCS:%.c=%.o})
 

@@ -31,13 +31,23 @@ struct s_lexer
 	t_lexer			*prev;
 };
 
+typedef struct	s_parser
+{
+	t_lexer			*lexer_list;
+	t_lexer			*redirections;
+	int				num_red;
+	struct	s_data	*data;
+}	t_parser;
+
 typedef struct	s_data
 {
-	char		**env;
-	char		*pwd;
-	char		*oldpwd;
-	char		*path;
-	t_lexer		*lexer;
+	char					**env;
+	char					*pwd;
+	char					*oldpwd;
+	char					*path;
+	t_lexer					*lexer;
+	struct s_simple_cmds	*simple_cmd;
+	int						pipes;
 }				t_data;
 
 typedef struct s_simple_cmds
@@ -98,5 +108,20 @@ int		execute_env(t_data	*data);
 
 /* mini_pwd	*/
 int		mini_pwd(t_data *data, t_simple_cmds *simple_cmd);
+
+/* PARSER*/
+/* parser.c */
+int		parser(t_data *data);
+int		pipe_error(t_data *data, t_tokens token);
+
+/* parser_utils.c */
+void	count_pipes(t_lexer *lexer, t_data	*data);
+
+/* ERROR */
+/* error.c */
+int		parser_double_token(t_data *data, t_lexer *lexer, t_tokens token);
+
+/* diff_error.c */
+int		cmd_not_found(char *str);
 
 #endif

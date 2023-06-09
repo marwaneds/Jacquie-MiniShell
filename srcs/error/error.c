@@ -6,29 +6,35 @@
 /*   By: mel-faqu <mel-faqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:43:13 by mel-faqu          #+#    #+#             */
-/*   Updated: 2023/06/08 13:48:30 by mel-faqu         ###   ########.fr       */
+/*   Updated: 2023/06/09 11:56:38 by mel-faqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	parser_double_token(t_data *data, t_lexer *lexer, t_tokens token)
+int	ft_error(int error, t_data *data)
 {
-	ft_putstr_fd("minishell: syntax error near unexpected token ",
-		STDERR_FILENO);
-	if (token = GREAT)
-		ft_putstr_fd("'>'\n", STDERR_FILENO);
-	else if (token = GREAT_GREAT)
-		ft_putstr_fd("'>>'\n", STDERR_FILENO);
-	else if (token = LESS)
-		ft_putstr_fd("'<'\n", STDERR_FILENO);
-	else if (token = LESS_LESS)
-		ft_putstr_fd("'<<'\n", STDERR_FILENO);
-	else if (token = PIPE)
-		ft_putstr_fd("'|'\n", STDERR_FILENO);
-	else
-		ft_putstr_fd("\n", STDERR_FILENO);
-	lexer_clear(&lexer);
-	reset_data(data);
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	if (error == 0)
+		ft_putstr_fd("syntax error near unexpected token 'newline'\n",
+			STDERR_FILENO);
+	else if (error == 1)
+		ft_putstr_fd("memory error: unable to assign memory\n", STDERR_FILENO);
+	else if (error == 2)
+		ft_putstr_fd("syntax error: unable to locate closing quotation\n",
+			STDERR_FILENO);
+	else if (error == 3)
+		ft_putstr_fd("Parser problem\n", STDERR_FILENO);
+	else if (error == 4)
+		ft_putstr_fd("Failed to create pipe\n", STDERR_FILENO);
+	else if (error == 5)
+		ft_putstr_fd("Failed to fork\n", STDERR_FILENO);
+	else if (error == 6)
+		ft_putstr_fd("outfile: Error\n", STDERR_FILENO);
+	else if (error == 7)
+		ft_putstr_fd("infile: No such file or directory\n", STDERR_FILENO);
+	else if (error == 8)
+		ft_putendl_fd("Path does not exist", STDERR_FILENO);
+	reset_tools(data);
 	return (EXIT_FAILURE);
 }

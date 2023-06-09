@@ -120,9 +120,20 @@ void	count_pipes(t_lexer *lexer, t_data	*data);
 
 /* ERROR */
 /* error.c */
-int		parser_double_token(t_data *data, t_lexer *lexer, t_tokens token);
+int		ft_error(int error, t_data *data);
 
 /* diff_error.c */
+void	parser_error(int error, t_data *data, t_lexer *lexer);
+int		parser_double_token(t_data *data, t_lexer *lexer, t_tokens token);
+int		export_error(char *str);
+void	lexer_error(int error, t_data *data);
 int		cmd_not_found(char *str);
+
+/* UTILS */
+/* t_lexer_clear */
+t_lexer	*lexer_clearone(t_lexer	**lst);
+void	lexer_delfirst(t_lexer **lst);
+void	lexer_delone(t_lexer **lst, int key);
+void	lexer_clear(t_lexer **lst);
 
 #endif

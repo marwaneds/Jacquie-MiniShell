@@ -6,7 +6,7 @@
 #    By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/05/11 06:46:37 by cortiz           ###   ########.fr        #
+#    Updated: 2023/06/08 09:33:23 by cortiz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS =	main.c			\
 		parser_utils.c	\
 		parser.c		\
 		expander.c		\
+		executor.c		\
 
 OBJS = $(addprefix ${OBJS_DIR}/, ${SRCS:%.c=%.o})
 

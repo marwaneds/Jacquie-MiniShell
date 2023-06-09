@@ -20,7 +20,8 @@ typedef enum s_tokens
 	LESS_LESS,
 }	t_tokens;
 
-typedef struct s_lexer	t_lexer;
+typedef struct s_lexer			t_lexer;
+typedef struct s_simple_cmds	t_simple_cmds;
 
 struct s_lexer
 {
@@ -52,11 +53,11 @@ typedef struct	s_data
 
 typedef struct s_simple_cmds
 {
-	char                    **str;
+	char					**str;
 	char					*builtins;
-	int                     num_redirections;
-	char                    *hd_file_name;
-	t_lexer                 *redirections;
+	int						num_redirections;
+	char					*hd_file_name;
+	t_lexer					*redirections;
 	struct s_simple_cmds	*next;
 	struct s_simple_cmds	*prev;
 }	t_simple_cmds;
@@ -91,7 +92,7 @@ void	c_handler_doc(int sig);
 void	q_handler(int sig);
 void	c_handler_2(int sig);
 void	d_handler(int sig);
-void	rl_replace_line (const char *text, int clear_undo);
+void	rl_replace_line(const char *text, int clear_undo);
 
 /* expander */
 void	expander(t_data *data);

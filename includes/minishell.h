@@ -12,6 +12,7 @@
 
 # define BOZO_MAX INT_MAX
 # define BOZO_MIN INT_INT
+# define INFILE_STD 0
 
 typedef enum s_tokens
 {
@@ -92,6 +93,7 @@ void	rl_replace_line(const char *text, int clear_undo);
 void	expander(t_data *data);
 
 /* Executor */
+int		handle_redirections(t_simple_cmds *cmd);
 char	*generate_file();
 int		create_heredoc(t_lexer *heredoc, t_simple_cmds *cmds);
 void	check_heredoc(t_data *data);

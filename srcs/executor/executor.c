@@ -15,9 +15,10 @@
 // 		execute_unset(data, data->simple_cmds);
 // }
 
-void	exec_cmd(t_data *data)
+void	exec_cmd(t_simple_cmds *cmds)
 {
-	(void)data;
+	if (cmds->redirections)
+		handle_redirections(cmds);
 }
 
 void	single_cmd(t_data *data)
@@ -29,7 +30,7 @@ void	single_cmd(t_data *data)
 	check_heredoc(data);
 	pid = fork();
 	if (pid == 0)
-		exec_cmd(data);
+		exec_cmd(data->simple_cmds);
 }
 
 void	executor(t_data *data)

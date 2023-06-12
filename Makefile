@@ -6,7 +6,7 @@
 #    By: cortiz <cortiz@student.s19.be>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/06/09 12:14:27 by cortiz           ###   ########.fr        #
+#    Updated: 2023/06/11 12:55:17 by cortiz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS =	main.c						\
 		parser_utils.c				\
 		parser.c					\
 		expander.c					\
+		executor/redirections.c		\
 		executor/heredoc.c			\
 		executor/executor.c			\
 		gnl/get_next_line.c			\

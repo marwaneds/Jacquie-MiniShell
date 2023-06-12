@@ -120,12 +120,18 @@ int		execute_env(t_data	*data);
 int		mini_pwd(t_data *data, t_simple_cmds *simple_cmd);
 
 /* PARSER*/
+/* diff_redirection.c*/
+int		add_new_redirection(t_lexer *tmp,t_parser *parser);
+void	rm_redirections(t_parser *parser);
+
 /* parser.c */
-int		parser(t_data *data);
+t_simple_cmds	*init_cmd(t_parser *parser);
 int		pipe_error(t_data *data, t_tokens token);
+int		parser(t_data *data);
 
 /* parser_utils.c */
 void	count_pipes(t_lexer *lexer, t_data	*data);
+t_parser	init_paser_tools(t_lexer *lexer, t_data *data);
 
 /* ERROR */
 /* error.c */

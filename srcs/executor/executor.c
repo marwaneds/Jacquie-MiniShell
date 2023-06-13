@@ -1,27 +1,37 @@
 #include "minishell.h"
 
-// void	exec_builtins(t_data *data)
+// int	exec_builtins(t_data *data)
 // {
 // 	char	*builtin;
 
 // 	builtin = data->simple_cmd->builtins;
 // 	if (builtin == "cd")
-// 		execute_cd(data, data->simple_cmd);
+// 		return (execute_cd(data, data->simple_cmd));
 // 	if (builtin == "exit")
-// 		execute_exit(data);
+// 		return (execute_exit(data));
 // 	if (builtin == "export")
-// 		execute_export(data, data->simple_cmd);
+// 		return (execute_export(data, data->simple_cmd));
 // 	if (builtin == "unset")
-// 		execute_unset(data, data->simple_cmd);
+// 		return (execute_unset(data, data->simple_cmd));
+//	if (builtin == "PWD")
+// 		return (execute_pwd(data, data->simple_cmd));
+//	if (builtin == "echo")
+// 		return (execute_echo(data, data->simple_cmd));
+//	if (builtin == "env")
+//		return (execute_env(data, data->simple_cmd));
 // }
 
-void	exec_cmd(t_simple_cmds *cmds)
+void	exec_cmd(t_simple_cmds *cmds, t_data *data)
 {
+	// int	value;
+	(void)data;
 	if (cmds->redirections)
 		handle_redirections(cmds);
 	// if (cmds->builtins)
-	// 	exec_builtins();
-
+	// {
+	// 	value = exec_builtins(cmds, data);
+	// 	exit(value);
+	// }
 }
 
 void	single_cmd(t_data *data)
@@ -33,7 +43,8 @@ void	single_cmd(t_data *data)
 	check_heredoc(data);
 	pid = fork();
 	if (pid == 0)
-		exec_cmd(data->simple_cmd);
+		exec_cmd(data->simple_cmd, data);
+	waitpid(pid, NULL, 0);
 }
 
 void	executor(t_data *data)

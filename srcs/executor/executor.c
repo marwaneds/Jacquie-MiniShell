@@ -4,15 +4,15 @@
 // {
 // 	char	*builtin;
 
-// 	builtin = data->simple_cmds->builtins;
+// 	builtin = data->simple_cmd->builtins;
 // 	if (builtin == "cd")
-// 		execute_cd(data, data->simple_cmds);
+// 		execute_cd(data, data->simple_cmd);
 // 	if (builtin == "exit")
 // 		execute_exit(data);
 // 	if (builtin == "export")
-// 		execute_export(data, data->simple_cmds);
+// 		execute_export(data, data->simple_cmd);
 // 	if (builtin == "unset")
-// 		execute_unset(data, data->simple_cmds);
+// 		execute_unset(data, data->simple_cmd);
 // }
 
 void	exec_cmd(t_simple_cmds *cmds)
@@ -25,12 +25,12 @@ void	single_cmd(t_data *data)
 {
 	int	pid;
 
-	// if (is_builtin(data->simple_cmds->builtins))
+	// if (is_builtin(data->simple_cmd->builtins))
 		// exec_builtins(data);
 	check_heredoc(data);
 	pid = fork();
 	if (pid == 0)
-		exec_cmd(data->simple_cmds);
+		exec_cmd(data->simple_cmd);
 }
 
 void	executor(t_data *data)

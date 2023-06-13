@@ -52,7 +52,7 @@ typedef struct	s_data
 	char					*path;
 	int						nb_pipes;;
 	t_lexer					*lexer;
-	struct s_simple_cmds	*simple_cmds;
+	struct s_simple_cmds	*simple_cmd;
 	int						pipes;
 }				t_data;
 

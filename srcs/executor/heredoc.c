@@ -44,17 +44,17 @@ void	check_heredoc(t_data *data)
 	t_data *head;
 
 	head = data;
-	while (head->simple_cmds->redirections)
+	while (head->simple_cmd->redirections)
 	{
-		if (head->simple_cmds->redirections->token == LESS_LESS)
+		if (head->simple_cmd->redirections->token == LESS_LESS)
 		{
-			data->simple_cmds->hd_file_name = generate_file();
-			if (!create_heredoc(head->simple_cmds->redirections, head->simple_cmds))
+			data->simple_cmd->hd_file_name = generate_file();
+			if (!create_heredoc(head->simple_cmd->redirections, head->simple_cmd))
 			{
 				// free
 				return ;
 			}
 		}
-		head->simple_cmds->redirections = head->simple_cmds->redirections->next;
+		head->simple_cmd->redirections = head->simple_cmd->redirections->next;
 	}
 }

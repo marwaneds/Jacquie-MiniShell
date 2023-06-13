@@ -55,6 +55,6 @@ void	check_heredoc(t_data *data)
 				return ;
 			}
 		}
-		head->simple_cmds = head->simple_cmds->next;
+		head->simple_cmds->redirections = head->simple_cmds->redirections->next;
 	}
 }

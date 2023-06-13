@@ -13,6 +13,7 @@
 # define BOZO_MAX INT_MAX
 # define BOZO_MIN INT_INT
 # define INFILE_STD 0
+# define OUTFILE_STD 1
 
 typedef enum s_tokens
 {
@@ -49,8 +50,9 @@ typedef struct	s_data
 	char					*pwd;
 	char					*oldpwd;
 	char					*path;
+	int						nb_pipes;;
 	t_lexer					*lexer;
-	struct s_simple_cmds	*simple_cmd;
+	struct s_simple_cmds	*simple_cmds;
 	int						pipes;
 }				t_data;
 

@@ -26,7 +26,8 @@ int	handle_infile(char *file)
 		if (dup2(fd, INFILE_STD) == -1)
 			return (1);
 	}
-	close(fd);
+	if (fd > 0)
+		close(fd);
 	return (0);
 }
 
@@ -45,6 +46,8 @@ int	handle_outfile(t_lexer *redirections)
 		if (dup2(fd, OUTFILE_STD))
 			return (1);
 	}
+	if (fd > 0)
+		close(fd);
 	return (0);
 }
 
@@ -53,15 +56,24 @@ int	handle_redirections(t_simple_cmds *cmd)
 	t_simple_cmds *head;
 
 	head = cmd;
-	if (cmd->redirections->token == LESS)
-		if (handle_infile(cmd->redirections->str))
-			return (1);
-	if (cmd->redirections->token == GREAT || cmd->redirections->token == GREAT_GREAT)
-		if (handle_outfile(cmd->redirections))
-			return (1);
-	if (cmd->redirections->token == LESS_LESS)
-		if (handle_infile(head->hd_file_name))
-			return (1);
-	cmd->redirections = cmd->redirections->next;
+	while (cmd->redirections)
+	{
+		if (cmd->redirections->token == LESS)
+		{
+			if (handle_infile(cmd->redirections->str))
+				return (1);
+		}
+		else if (cmd->redirections->token == GREAT || cmd->redirections->token == GREAT_GREAT)
+		{
+			if (handle_outfile(cmd->redirections))
+				return (1);
+		}
+		else if (cmd->redirections->token == LESS_LESS)
+		{
+			if (handle_infile(head->hd_file_name))
+				return (1);
+		}
+		cmd->redirections = cmd->redirections->next;
+	}
 	return (0);
 }

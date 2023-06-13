@@ -19,6 +19,9 @@ void	exec_cmd(t_simple_cmds *cmds)
 {
 	if (cmds->redirections)
 		handle_redirections(cmds);
+	// if (cmds->builtins)
+	// 	exec_builtins();
+
 }
 
 void	single_cmd(t_data *data)

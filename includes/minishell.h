@@ -36,13 +36,13 @@ struct s_lexer
 	t_lexer			*prev;
 };
 
-typedef struct	s_parser
-{
-	t_lexer			*lexer_list;
-	t_lexer			*redirections;
-	int				num_red;
-	struct	s_data	*data;
-}	t_parser;
+// typedef struct	s_parser
+// {
+// 	t_lexer			*lexer_list;
+// 	t_lexer			*redirections;
+// 	int				num_red;
+// 	struct	s_data	*data;
+// }	t_parser;
 
 typedef struct	s_data
 {
@@ -50,7 +50,7 @@ typedef struct	s_data
 	char					*pwd;
 	char					*oldpwd;
 	char					*path;
-	int						nb_pipes;;
+	int						nb_pipes;
 	t_lexer					*lexer;
 	struct s_simple_cmds	*simple_cmd;
 	int						pipes;
@@ -123,17 +123,17 @@ int		mini_pwd(t_data *data, t_simple_cmds *simple_cmd);
 
 /* PARSER*/
 /* diff_redirection.c*/
-int		add_new_redirection(t_lexer *tmp,t_parser *parser);
-void	rm_redirections(t_parser *parser);
+int		add_new_redirection(t_lexer *tmp, t_data *data);
+void	rm_redirections(t_data *data);
 
 /* parser.c */
-t_simple_cmds	*init_cmd(t_parser *parser);
+t_simple_cmds	*init_cmd(t_data *data);
 int		pipe_error(t_data *data, t_tokens token);
 int		parser(t_data *data);
 
 /* parser_utils.c */
 void	count_pipes(t_lexer *lexer, t_data	*data);
-t_parser	init_paser_tools(t_lexer *lexer, t_data *data);
+t_data	init_paser_tools(t_lexer *lexer, t_data *data);
 
 /* ERROR */
 /* error.c */

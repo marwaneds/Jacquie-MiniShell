@@ -67,6 +67,13 @@ typedef struct s_simple_cmds
 	struct s_simple_cmds	*prev;
 }	t_simple_cmds;
 
+typedef struct s_global
+{
+	int	return_value;
+}	t_global;
+
+t_global global;
+
 /* utils */
 int		ft_iswhitespace(char c);
 void	lexer_adback(t_lexer **lexer, t_lexer *new);
@@ -107,6 +114,15 @@ int		handle_redirections(t_simple_cmds *cmd);
 char	*generate_file();
 int		create_heredoc(t_lexer *heredoc, t_simple_cmds *cmds);
 void	check_heredoc(t_data *data);
+int		start_cmd(t_simple_cmds *cmds, t_data *data);
+void	exec_cmd(t_simple_cmds *cmds, t_data *data);
+void	single_cmd(t_data *data);
+int		exec_builtins(t_data *data);
+
+/* Exec utils */
+int		error_cmd(int error, char *msg);
+void	free_tab(char **tab);
+char	*get_cmd_path(char **env, char *cmd);
 
 /* Parser */
 int		is_builtin(char *command);

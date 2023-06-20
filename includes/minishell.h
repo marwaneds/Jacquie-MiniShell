@@ -54,6 +54,7 @@ typedef struct	s_data
 	t_lexer					*lexer;
 	struct s_simple_cmds	*simple_cmd;
 	int						pipes;
+	int						*pid;
 }				t_data;
 
 typedef struct s_simple_cmds

@@ -37,7 +37,8 @@ int	start_cmd(t_simple_cmds *cmds, t_data *data)
 void	exec_cmd(t_simple_cmds *cmds, t_data *data)
 {
 	int	value;
-	(void)data;
+
+	value = 0;
 	if (cmds->redirections)
 		handle_redirections(cmds);
 	if (cmds->builtins)
@@ -46,9 +47,8 @@ void	exec_cmd(t_simple_cmds *cmds, t_data *data)
 		exit(value);
 	}
 	else if (cmds->str[0][0])
-	{
 		value = start_cmd(cmds, data);
-	}
+	exit(value);
 }
 
 void	single_cmd(t_data *data)

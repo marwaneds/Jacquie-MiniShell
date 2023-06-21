@@ -25,9 +25,8 @@ int	create_heredoc(t_lexer *heredoc, t_simple_cmds *cmds)
 	}
 	while (1)
 	{
-		write(1, "> ", 2);
-		tmp = get_next_line(0);
-		len = ft_strlen(tmp) - 1;
+		tmp = readline(">");
+		len = ft_strlen(tmp);
 		if (!ft_strncmp(tmp, heredoc->str, len) && (len == ft_strlen(heredoc->str)))
 			break ;
 		write(fd, tmp, ft_strlen(tmp));
@@ -39,22 +38,23 @@ int	create_heredoc(t_lexer *heredoc, t_simple_cmds *cmds)
 	return (1);
 }
 
-void	check_heredoc(t_data *data)
+void	check_heredoc(t_simple_cmds *cmds)
 {
-	t_data *head;
+	t_lexer *head;
 
-	head = data;
-	while (head->simple_cmd->redirections)
+	head = cmds->redirections;
+	while (cmds->redirections)
 	{
-		if (head->simple_cmd->redirections->token == LESS_LESS)
+		if (cmds->redirections->token == LESS_LESS)
 		{
-			data->simple_cmd->hd_file_name = generate_file();
-			if (!create_heredoc(head->simple_cmd->redirections, head->simple_cmd))
+			cmds->hd_file_name = generate_file();
+			if (!create_heredoc(cmds->redirections, cmds))
 			{
 				// free
 				return ;
 			}
 		}
-		head->simple_cmd->redirections = head->simple_cmd->redirections->next;
+		cmds->redirections = cmds->redirections->next;
 	}
+	cmds->redirections = head;
 }

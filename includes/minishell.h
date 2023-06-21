@@ -114,7 +114,7 @@ void	expander(t_data *data);
 int		handle_redirections(t_simple_cmds *cmd);
 char	*generate_file();
 int		create_heredoc(t_lexer *heredoc, t_simple_cmds *cmds);
-void	check_heredoc(t_data *data);
+void	check_heredoc(t_simple_cmds *cmds);
 int		start_cmd(t_simple_cmds *cmds, t_data *data);
 void	exec_cmd(t_simple_cmds *cmds, t_data *data);
 void	single_cmd(t_data *data);

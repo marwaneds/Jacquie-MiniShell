@@ -58,7 +58,7 @@ void	single_cmd(t_data *data)
 
 	// if (is_builtin(data->simple_cmd->builtins))
 	// 	exec_builtins(data);
-	check_heredoc(data);
+	check_heredoc(data->simple_cmd);
 	pid = fork();
 	if (pid == 0)
 		exec_cmd(data->simple_cmd, data);

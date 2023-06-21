@@ -6,12 +6,13 @@
 /*   By: mel-faqu <mel-faqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:43:23 by mel-faqu          #+#    #+#             */
-/*   Updated: 2023/06/16 15:17:42 by mel-faqu         ###   ########.fr       */
+/*   Updated: 2023/06/20 11:53:03 by mel-faqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*	Initialise un parser	*/
 t_data	init_paser_tools(t_lexer *lexer, t_data *data)
 {
 	t_data	parser;
@@ -23,6 +24,7 @@ t_data	init_paser_tools(t_lexer *lexer, t_data *data)
 	return (parser);
 }
 
+/*	Compte le nombre de pipe	*/
 void	count_pipes(t_lexer *lexer, t_data	*data)
 {
 	t_lexer	*tmp;
@@ -35,4 +37,21 @@ void	count_pipes(t_lexer *lexer, t_data	*data)
 			data->pipes++;
 		tmp = tmp->next;
 	}
+}
+
+/*	Compte le nombre d'argument	*/
+int	count_args(t_lexer *lexer)
+{
+	t_lexer	*tmp;
+	int		i;
+	
+	i = 0;
+	tmp = lexer;
+	while (tmp && tmp->token != PIPE)
+	{
+		if (tmp->i >= 0)
+			i++;
+		tmp = tmp->next;
+	}
+	return (i);
 }

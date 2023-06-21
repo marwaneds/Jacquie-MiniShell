@@ -6,7 +6,7 @@
 /*   By: mel-faqu <mel-faqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:35:47 by mel-faqu          #+#    #+#             */
-/*   Updated: 2023/06/16 15:16:55 by mel-faqu         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:44:38 by mel-faqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	pipe_error(t_data *data, t_tokens token)
 	}
 	if (!data->lexer)
 	{
-		error(0, data, data->lexer);
+		parser_error(0, data, data->lexer);
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);

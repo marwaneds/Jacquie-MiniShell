@@ -134,6 +134,7 @@ int		parser(t_data *data);
 /* parser_utils.c */
 void	count_pipes(t_lexer *lexer, t_data	*data);
 t_data	init_paser_tools(t_lexer *lexer, t_data *data);
+int		count_args(t_lexer *lexer);
 
 /* ERROR */
 /* error.c */
@@ -152,5 +153,8 @@ t_lexer	*lexer_clearone(t_lexer	**lst);
 void	lexer_delfirst(t_lexer **lst);
 void	lexer_delone(t_lexer **lst, int key);
 void	lexer_clear(t_lexer **lst);
+
+/* t_simple_cmds_utils */
+t_simple_cmds	*simple_cmdsnew(char **str, int num_redirections, t_lexer *redirections);
 
 #endif

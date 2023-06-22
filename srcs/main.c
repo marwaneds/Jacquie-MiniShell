@@ -6,7 +6,7 @@
 /*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:53:13 by cortiz            #+#    #+#             */
-/*   Updated: 2023/05/23 12:21:14 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/06/21 12:46:51 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,19 @@ int main(int ac, char **av, char **envp)
 		add_history(tmp);
 		init_data(data, tmp, envp);
 		expander(data);
-		// parser_init(data);
+		parser_init(data);
+		// data->simple_cmd = malloc(sizeof(t_simple_cmds));
+		// data->simple_cmd->builtins = NULL;
+		// data->simple_cmd->hd_file_name = NULL;
+		// data->simple_cmd->redirections = malloc(sizeof(t_lexer));
+		// data->simple_cmd->redirections->token = LESS_LESS;
+		// data->simple_cmd->redirections->str = "salut";
+		// data->simple_cmd->redirections->next = malloc(sizeof(t_lexer));
+		// data->simple_cmd->redirections->next->token = GREAT;
+		// data->simple_cmd->redirections->next->str = "teste";
+		// data->simple_cmd->redirections->next->next = NULL;
+		// data->simple_cmd->str = ft_split("cat", ' ');
+		// single_cmd(data);
 	}
 	return (0);
 }

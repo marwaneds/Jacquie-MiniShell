@@ -6,7 +6,7 @@
 /*   By: mel-faqu <mel-faqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:54:42 by mel-faqu          #+#    #+#             */
-/*   Updated: 2023/06/09 11:31:45 by mel-faqu         ###   ########.fr       */
+/*   Updated: 2023/06/27 16:12:16 by mel-faqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	lexer_delone(t_lexer **lst, int key)
 	t_lexer	*node;
 	t_lexer	*prev;
 	t_lexer	*start;
-	
+
 	start = *lst;
 	node = start;
 	if ((*lst)->i == key)
@@ -68,7 +68,7 @@ void	lexer_delone(t_lexer **lst, int key)
 //Removes items from lexer
 void	lexer_clear(t_lexer **lst)
 {
-	t_lexer *tmp;
+	t_lexer	*tmp;
 
 	if (!*lst)
 		return ;

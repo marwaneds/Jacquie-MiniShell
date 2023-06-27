@@ -46,6 +46,7 @@ struct s_lexer
 
 typedef struct	s_data
 {
+	char					**args;
 	char					**env;
 	char					*pwd;
 	char					*oldpwd;

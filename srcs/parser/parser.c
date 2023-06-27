@@ -6,7 +6,7 @@
 /*   By: mel-faqu <mel-faqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:35:47 by mel-faqu          #+#    #+#             */
-/*   Updated: 2023/06/20 12:44:38 by mel-faqu         ###   ########.fr       */
+/*   Updated: 2023/06/27 16:14:17 by mel-faqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_simple_cmds	*init_cmd(t_data *data)
 	int		i;
 	int		arg_size;
 	t_lexer	*tmp;
-	
+
 	i = 0;
 	rm_redirections(parser);
 	arg_size = count_args(data->lexer);
@@ -33,7 +33,8 @@ t_simple_cmds	*init_cmd(t_data *data)
 		}
 		arg_size--;
 	}
-	return (simple_cmdsnew(str, data->simple_cmd->num_redirections, data->simple_cmd->redirections));
+	return (simple_cmdsnew(str, data->simple_cmd->num_redirections,
+			data->simple_cmd->redirections));
 }
 
 int	pipe_error(t_data *data, t_tokens token)
@@ -54,7 +55,7 @@ int	pipe_error(t_data *data, t_tokens token)
 int	parser(t_data *data)
 {
 	t_simple_cmds	*node;
-	t_data		parser_tools;
+	t_data			parser_tools;
 
 	data->simple_cmd = NULL;
 	count_pipes(data->lexer, data);
@@ -75,8 +76,7 @@ int	parser(t_data *data)
 			data->simple_cmd = node;
 		else
 			simple_cmdadd_back(&data->simple_cmd, node);
-		data->lexer= parser_tools.lexer;
+		data->lexer = parser_tools.lexer;
 	}
 	return (EXIT_SUCCESS);
-	
 }

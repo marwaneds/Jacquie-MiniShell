@@ -53,7 +53,7 @@ typedef struct	s_data
 	int						nb_pipes;
 	t_lexer					*lexer;
 	struct s_simple_cmds	*simple_cmd;
-	int						pipes;
+	int						**pipes;
 	int						*pid;
 }				t_data;
 
@@ -111,6 +111,7 @@ void	rl_replace_line(const char *text, int clear_undo);
 void	expander(t_data *data);
 
 /* Executor */
+void	executor(t_data *data);
 int		handle_redirections(t_simple_cmds *cmd);
 char	*generate_file();
 int		create_heredoc(t_lexer *heredoc, t_simple_cmds *cmds);

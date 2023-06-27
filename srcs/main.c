@@ -6,7 +6,7 @@
 /*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:53:13 by cortiz            #+#    #+#             */
-/*   Updated: 2023/06/21 12:46:51 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/06/27 12:48:04 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,21 @@ int main(int ac, char **av, char **envp)
 		// data->simple_cmd->redirections->next->str = "teste";
 		// data->simple_cmd->redirections->next->next = NULL;
 		// data->simple_cmd->str = ft_split("cat", ' ');
-		// single_cmd(data);
+
+		// data->simple_cmd->next = malloc(sizeof(t_simple_cmds));
+		// data->simple_cmd->next->builtins = NULL;
+		// data->simple_cmd->next->hd_file_name = NULL;
+		// data->simple_cmd->next->redirections = malloc(sizeof(t_lexer));
+		// data->simple_cmd->next->redirections->token = LESS_LESS;
+		// data->simple_cmd->next->redirections->str = "bye";
+		// data->simple_cmd->next->redirections->next = malloc(sizeof(t_lexer));
+		// data->simple_cmd->next->redirections->next->token = GREAT;
+		// data->simple_cmd->next->redirections->next->str = "testdeu";
+		// data->simple_cmd->next->redirections->next->next = NULL;
+		// data->simple_cmd->next->str = ft_split("cat", ' ');
+		// data->nb_pipes = 1;
+		// printf("on est la\n");
+		// executor(data);
 	}
 	return (0);
 }

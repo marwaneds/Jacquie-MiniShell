@@ -36,6 +36,7 @@ int	start_cmd(t_simple_cmds *cmds, t_data *data)
 
 void	exec_cmd(t_simple_cmds *cmds, t_data *data)
 {
+	printf("exec_cmd\n");
 	int	value;
 
 	value = 0;

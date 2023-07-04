@@ -6,7 +6,7 @@
 /*   By: mel-faqu <mel-faqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:33:36 by mel-faqu          #+#    #+#             */
-/*   Updated: 2023/06/27 16:01:50 by mel-faqu         ###   ########.fr       */
+/*   Updated: 2023/06/29 13:47:44 by mel-faqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,3 +54,4 @@ int	reset_tools(t_data *data)
 	minishell_loop(data);
 	return (1);
 }
+   

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mel-faqu <mel-faqu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/27 16:16:48 by mel-faqu          #+#    #+#             */
+/*   Updated: 2023/06/27 16:18:28 by mel-faqu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -44,7 +56,7 @@ struct s_lexer
 // 	struct	s_data	*data;
 // }	t_parser;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	char					**args;
 	char					**env;

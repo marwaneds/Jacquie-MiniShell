@@ -6,7 +6,7 @@
 /*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:53:13 by cortiz            #+#    #+#             */
-/*   Updated: 2023/06/27 12:48:04 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/07/01 16:22:31 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,9 @@ int main(int ac, char **av, char **envp)
 		// data->simple_cmd->next->redirections->next->next = NULL;
 		// data->simple_cmd->next->str = ft_split("cat", ' ');
 		// data->nb_pipes = 1;
-		// printf("on est la\n");
+		// data->simple_cmd->next->next = NULL;
 		// executor(data);
+		// printf("on est la\n");
 	}
 	return (0);
 }

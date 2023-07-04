@@ -40,6 +40,7 @@ int	create_heredoc(t_lexer *heredoc, t_simple_cmds *cmds)
 
 void	check_heredoc(t_simple_cmds *cmds)
 {
+	printf("check_heredoc\n");
 	t_lexer *head;
 
 	head = cmds->redirections;
@@ -57,4 +58,5 @@ void	check_heredoc(t_simple_cmds *cmds)
 		cmds->redirections = cmds->redirections->next;
 	}
 	cmds->redirections = head;
+	printf("fin du here_doc\n");
 }

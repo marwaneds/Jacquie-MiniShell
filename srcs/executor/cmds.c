@@ -3,10 +3,10 @@
 int	exec_builtins(t_data *data)
 {
 	(void)data;
-	return (0);
-	// char	*builtin;
+	// return (0);
+	char	*builtin;
 
-	// builtin = data->simple_cmd->builtins;
+	builtin = data->simple_cmd->builtins;
 	// if (builtin == "cd")
 	// 	return (execute_cd(data, data->simple_cmd));
 	// if (builtin == "exit")
@@ -17,10 +17,11 @@ int	exec_builtins(t_data *data)
 	// 	return (execute_unset(data, data->simple_cmd));
 	// if (builtin == "PWD")
 	// 	return (execute_pwd(data, data->simple_cmd));
-	// if (builtin == "echo")
-	// 	return (execute_echo(data, data->simple_cmd));
+	if (!ft_strcmp(builtin, "echo"))
+		return (execute_echo(data->simple_cmd));
 	// if (builtin == "env")
-	// 	return (execute_env(data, data->simple_cmd));
+		// return (execute_env(data, data->simple_cmd));
+	return (0);
 }
 
 int	start_cmd(t_simple_cmds *cmds, t_data *data)

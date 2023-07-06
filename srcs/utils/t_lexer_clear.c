@@ -6,12 +6,13 @@
 /*   By: mel-faqu <mel-faqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:54:42 by mel-faqu          #+#    #+#             */
-/*   Updated: 2023/06/27 16:12:16 by mel-faqu         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:29:37 by mel-faqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*	Supprime un element du lexer	*/
 t_lexer	*lexer_clearone(t_lexer	**lst)
 {
 	if ((*lst)->str)

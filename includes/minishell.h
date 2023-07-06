@@ -6,7 +6,7 @@
 /*   By: mel-faqu <mel-faqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 16:16:48 by mel-faqu          #+#    #+#             */
-/*   Updated: 2023/06/27 16:18:28 by mel-faqu         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:15:12 by mel-faqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../libft/libft.h"
 # include "../srcs/gnl/get_next_line.h"
 # include <stdio.h>
+# include <stdbool.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <unistd.h>
@@ -68,6 +69,7 @@ typedef struct s_data
 	struct s_simple_cmds	*simple_cmd;
 	int						**pipes;
 	int						*pid;
+	bool					reset;
 }				t_data;
 
 typedef struct s_simple_cmds

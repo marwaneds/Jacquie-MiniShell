@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cortiz <cortiz@student.s19.be>             +#+  +:+       +#+         #
+#    By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/06/20 11:21:28 by cortiz           ###   ########.fr        #
+#    Updated: 2023/07/05 09:22:38 by cortiz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRCS =	main.c						\
 		executor/utils.c			\
 		executor/cmds.c				\
 		executor/executor.c			\
+		builtins/execute_echo.c		\
 		gnl/get_next_line.c			\
 		gnl/get_next_line_utils.c	\
 

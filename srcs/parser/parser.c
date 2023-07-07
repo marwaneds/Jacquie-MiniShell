@@ -6,7 +6,7 @@
 /*   By: mel-faqu <mel-faqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 12:35:47 by mel-faqu          #+#    #+#             */
-/*   Updated: 2023/06/27 16:14:17 by mel-faqu         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:30:13 by mel-faqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_simple_cmds	*init_cmd(t_data *data)
 			data->simple_cmd->redirections));
 }
 
+/*	Verifie si il y a une erreure de pipe	*/
 int	pipe_error(t_data *data, t_tokens token)
 {
 	if (token == PIPE)

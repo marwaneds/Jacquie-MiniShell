@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mel-faqu <mel-faqu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/27 16:16:48 by mel-faqu          #+#    #+#             */
+/*   Updated: 2023/07/06 14:15:12 by mel-faqu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
 # include "../libft/libft.h"
 # include "../srcs/gnl/get_next_line.h"
 # include <stdio.h>
+# include <stdbool.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <unistd.h>
@@ -44,7 +57,7 @@ struct s_lexer
 // 	struct	s_data	*data;
 // }	t_parser;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	char					**args;
 	char					**env;
@@ -56,6 +69,7 @@ typedef struct	s_data
 	struct s_simple_cmds	*simple_cmd;
 	int						**pipes;
 	int						*pid;
+	bool					reset;
 }				t_data;
 
 typedef struct s_simple_cmds

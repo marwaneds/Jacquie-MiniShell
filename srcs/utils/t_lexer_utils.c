@@ -6,12 +6,13 @@
 /*   By: mel-faqu <mel-faqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:33:36 by mel-faqu          #+#    #+#             */
-/*   Updated: 2023/06/27 16:01:50 by mel-faqu         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:20:57 by mel-faqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*	Creer un nouveau lexer	*/
 t_lexer	*lexer_new(char *str, int token)
 {
 	t_lexer		*new_element;
@@ -29,6 +30,7 @@ t_lexer	*lexer_new(char *str, int token)
 	return (new_element);
 }
 
+/*	Free un tableau	*/
 void	free_arr(char **split_arr)
 {
 	int	i;
@@ -42,15 +44,17 @@ void	free_arr(char **split_arr)
 	free(split_arr);
 }
 
+/*	reset les datas	*/
 int	reset_tools(t_data *data)
 {
-	simple_cmdsclear(&data->simple_cmds);
+	simple_cmdsclear(&data->simple_cmd);
 	free(data->args);
 	if (data->pid)
 		free(data->pid);
-	free_arr(data->paths);
+	free_arr(data->path);
 	implement_tools(data);
-	data->reset = TRUE;
+	data->reset = 1;
 	minishell_loop(data);
 	return (1);
 }
+   

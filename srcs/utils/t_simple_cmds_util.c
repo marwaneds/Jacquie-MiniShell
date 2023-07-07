@@ -6,12 +6,14 @@
 /*   By: mel-faqu <mel-faqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 11:55:29 by mel-faqu          #+#    #+#             */
-/*   Updated: 2023/06/27 16:11:56 by mel-faqu         ###   ########.fr       */
+/*   Updated: 2023/07/06 14:26:32 by mel-faqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*	Alloue de la memoire pour une nouvelle structure et affecte les valeurs
+	passee en parametre	*/
 t_simple_cmds	*simple_cmdsnew(char **str, int num_redirections,
 	t_lexer *redirections)
 {

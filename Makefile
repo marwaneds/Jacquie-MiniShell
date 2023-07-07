@@ -6,7 +6,7 @@
 #    By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/01 15:02:30 by fluchten          #+#    #+#              #
-#    Updated: 2023/07/05 09:22:38 by cortiz           ###   ########.fr        #
+#    Updated: 2023/07/07 12:50:43 by cortiz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,14 @@ SRCS_DIR = srcs
 OBJS_DIR = objs
 
 SRCS =	main.c						\
-		maitre_split.c 				\
+		lexer/lexer.c				\
+		lexer/utils.c				\
 		utils.c						\
 		signal.c					\
 		parser_utils.c				\
 		parser.c					\
-		expander.c					\
+		expander/expander.c			\
+		expander/utils.c			\
 		executor/redirections.c		\
 		executor/heredoc.c			\
 		executor/utils.c			\

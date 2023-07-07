@@ -84,6 +84,7 @@ char	**tab_cpy(char **src);
 char	*exp_strjoin(char const *s1, char const *s2);
 int		is_quotes(char c);
 int		len_env_index(char *str);
+int		is_token(char c);
 
 /*	maitre_split  */
 int		get_token(char *str, int *i, int *tokken);
@@ -110,6 +111,9 @@ void	rl_replace_line(const char *text, int clear_undo);
 
 /* expander */
 void	expander(t_data *data);
+char	*word_after_dollar(int i, char *str,int *j);
+char	*get_env_data(char *index, t_data *data);
+int		prev_is_heredoc(t_lexer *tmp);
 
 /* Executor */
 void	executor(t_data *data);

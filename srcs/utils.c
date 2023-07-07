@@ -6,7 +6,7 @@
 /*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 20:17:30 by cortiz            #+#    #+#             */
-/*   Updated: 2023/05/23 09:20:42 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/07/06 10:07:49 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ void	lexer_adback(t_lexer **lexer, t_lexer *new)
 		back->next = new;
 		new->prev = back;
 	}
-	// printf("str = %s\nand\n", lexer->str);
-	// printf("token = %d\n\n", lexer->token);
 }
 char	*exp_strjoin(char const *s1, char const *s2)
 {

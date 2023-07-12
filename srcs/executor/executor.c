@@ -32,16 +32,21 @@ int	init_pipes(t_data *data)
 	return (1);
 }
 
-void	pre_redirect(t_data *data, int i)
+void	pre_redirect(t_data *data,t_simple_cmds *cmd, int i)
 {
 	printf("pre_redirect\n");
-	if (i == 0)
+	if (!cmd->prev)
 		dup2(data->pipes[i][1], 1);
+	else if (!cmd->next)
+	{
+		dup2(data->pipes[i - 1][0], 0);
+	}
 	else
 	{
-		dup2(data->pipes[i - 1][1], 0);
+		dup2(data->pipes[i - 1][0], 0);
 		dup2(data->pipes[i][1], 1);
 	}
+	c(data, data->nb_pipes);
 	printf("fin du preredirect\n");
 }
 
@@ -51,7 +56,7 @@ void	create_child(t_data *data, t_simple_cmds *cmd, int i)
 	data->pid[i] = fork();
 	if (data->pid[i] == 0)
 	{
-		pre_redirect(data, i);
+		pre_redirect(data, cmd, i);
 		exec_cmd(cmd, data);
 	}
 }

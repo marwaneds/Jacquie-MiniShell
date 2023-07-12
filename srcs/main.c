@@ -6,7 +6,7 @@
 /*   By: cortiz <cortiz@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 11:53:13 by cortiz            #+#    #+#             */
-/*   Updated: 2023/07/07 12:51:00 by cortiz           ###   ########.fr       */
+/*   Updated: 2023/07/12 13:49:03 by cortiz           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int main(int ac, char **av, char **envp)
 		// data->simple_cmd->redirections->next->str = "teste";
 		// data->simple_cmd->redirections->next->next = NULL;
 		// data->simple_cmd->str = ft_split("cat", ' ');
+		// data->simple_cmd->prev = NULL;
 
 		// data->simple_cmd->next = malloc(sizeof(t_simple_cmds));
 		// data->simple_cmd->next->builtins = NULL;
@@ -125,12 +126,54 @@ int main(int ac, char **av, char **envp)
 		// // data->simple_cmd->next->next->redirections->str = "OUT";
 		// data->simple_cmd->next->next->redirections = NULL;
 		// // data->simple_cmd->next->next->redirections->next = NULL;
-		// data->simple_cmd->next->next->str = ft_split("ls", ' ');
+		// data->simple_cmd->next->next->str = ft_split("ls -la", ' ');
 		// data->nb_pipes = 2;
 		// data->simple_cmd->next->next->next = NULL;
+
+
+
+
+		// data->simple_cmd = malloc(sizeof(t_simple_cmds));
+		// data->simple_cmd->builtins = NULL;
+		// data->simple_cmd->hd_file_name = NULL;
+		// data->simple_cmd->redirections = NULL;
+		// data->simple_cmd->str = ft_split("ls", ' ');
+		// data->simple_cmd->prev = NULL;
+
+		// data->simple_cmd->next = malloc(sizeof(t_simple_cmds));
+		// data->simple_cmd->next->builtins = NULL;
+		// data->simple_cmd->next->hd_file_name = NULL;
+		// data->simple_cmd->next->redirections = NULL;
+		// data->simple_cmd->next->str = ft_split("ls", ' ');
+
+		// data->simple_cmd->next->next = malloc(sizeof(t_simple_cmds));
+		// data->simple_cmd->next->next->builtins = NULL;
+		// data->simple_cmd->next->next->hd_file_name = NULL;
+		// data->simple_cmd->next->next->redirections = NULL;
+		// data->simple_cmd->next->next->str = ft_split("ls", ' ');
+
+		// data->simple_cmd->next->next->next = malloc(sizeof(t_simple_cmds));
+		// data->simple_cmd->next->next->next->builtins = NULL;
+		// data->simple_cmd->next->next->next->hd_file_name = NULL;
+		// data->simple_cmd->next->next->next->redirections = NULL;
+		// data->simple_cmd->next->next->next->str = ft_split("ls", ' ');
+
+		// data->simple_cmd->next->next->next->next = malloc(sizeof(t_simple_cmds));
+		// data->simple_cmd->next->next->next->next->builtins = NULL;
+		// data->simple_cmd->next->next->next->next->hd_file_name = NULL;
+		// data->simple_cmd->next->next->next->next->redirections = NULL;
+		// data->simple_cmd->next->next->next->next->str = ft_split("ls -la", ' ');
+
+		// data->simple_cmd->next->next->next->next->next = malloc(sizeof(t_simple_cmds));
+		// data->simple_cmd->next->next->next->next->next->builtins = NULL;
+		// data->simple_cmd->next->next->next->next->next->hd_file_name = NULL;
+		// data->simple_cmd->next->next->next->next->next->redirections = NULL;
+		// data->simple_cmd->next->next->next->next->next->str = ft_split("grep ob", ' ');
+		// data->simple_cmd->next->next->next->next->next->next = NULL;
+		// data->nb_pipes = 5;
 		// executor(data);
-		// printf("on est la\n");
-		// break;
+		printf("on est la\n");
+		break;
 	}
 	return (0);
 }
